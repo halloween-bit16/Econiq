@@ -69,24 +69,24 @@ const Index = () => {
         />
 
         <div className="container relative mx-auto px-4 text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm text-muted-foreground">
-            <span className="inline-block h-2 w-2 rounded-full bg-primary" />
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm text-muted-foreground animate-fade-in">
+            <span className="inline-block h-2 w-2 rounded-full bg-primary animate-pulse" />
             For India's next generation of professionals
           </div>
 
-          <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl animate-fade-in [animation-delay:100ms]">
             Understand Tax Policies
             <br />
             <span className="text-primary">Without the Jargon</span>
           </h1>
 
-          <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground md:text-xl animate-fade-in [animation-delay:200ms]">
             Adjust tax policies. See the impact instantly. 
             Know which slabs you fall into, when policies apply, 
             and what it means for your income.
           </p>
 
-          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center animate-fade-in [animation-delay:300ms]">
             <Link to="/simulator">
               <Button variant="hero" size="xl" className="group">
                 Start Simulation
@@ -96,12 +96,13 @@ const Index = () => {
           </div>
 
           {/* Target audience pills */}
-          <div className="mt-16 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-16 flex flex-wrap items-center justify-center gap-3 animate-fade-in [animation-delay:400ms]">
             <span className="text-sm text-muted-foreground">Built for:</span>
-            {targetAudience.map((audience) => (
+            {targetAudience.map((audience, index) => (
               <span
                 key={audience}
-                className="rounded-full border border-border bg-card px-4 py-1.5 text-sm text-foreground"
+                className="rounded-full border border-border bg-card px-4 py-1.5 text-sm text-foreground transition-colors hover:border-primary/50"
+                style={{ animationDelay: `${450 + index * 50}ms` }}
               >
                 {audience}
               </span>
@@ -127,7 +128,7 @@ const Index = () => {
             {features.map((feature) => (
               <div
                 key={feature.title}
-                className="bg-card border border-border rounded-xl p-6 hover:border-primary/30 transition-colors"
+                className="bg-card border border-border rounded-xl p-6 hover:border-primary/30 hover:-translate-y-1 transition-all duration-200"
               >
                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <feature.icon className="h-6 w-6" />

@@ -69,19 +69,19 @@ const Simulator = () => {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="income-tax" className="mt-0">
+          <TabsContent value="income-tax" className="mt-0 animate-fade-in">
             <IncomeTaxSimulator />
           </TabsContent>
 
-          <TabsContent value="gst" className="mt-0">
+          <TabsContent value="gst" className="mt-0 animate-fade-in">
             <GSTSimulator />
           </TabsContent>
 
-          <TabsContent value="composition" className="mt-0">
+          <TabsContent value="composition" className="mt-0 animate-fade-in">
             <CompositionSchemeSimulator />
           </TabsContent>
 
-          <TabsContent value="startup" className="mt-0">
+          <TabsContent value="startup" className="mt-0 animate-fade-in">
             <StartupIndiaSimulator />
           </TabsContent>
         </Tabs>
