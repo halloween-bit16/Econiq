@@ -333,7 +333,7 @@ const StartupIndiaSimulator = () => {
                 color: "hsl(210, 20%, 95%)"
               }} itemStyle={{
                 color: "white"
-              }} />
+              }} cursor={{ fill: "transparent" }} />
                 <Bar dataKey="profit" name="Net Profit" radius={[4, 4, 0, 0]}>
                   {comparisonData.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} />)}
                 </Bar>
