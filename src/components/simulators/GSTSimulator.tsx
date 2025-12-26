@@ -52,6 +52,36 @@ const GSTSimulator = () => {
     // Cash flow impact (GST paid before collection from customers)
     const cashFlowImpact = -netGSTPayable / 12; // Monthly impact
     
+    // NEW: Profit-focused calculations
+    // Calculate cost (base price minus profit margin)
+    const costPrice = basePrice * (1 - profitMargin / 100);
+    
+    // Profit before GST considerations
+    const profitBeforeGST = profitAmount;
+    
+    // Effective GST impact on profit:
+    // - You collect GST from customer (gstAmount)
+    // - You pay GST on inputs (assuming 60% of base price are inputs with GST)
+    // - Net GST outflow reduces working capital and affects profitability
+    const inputCostWithGST = costPrice * 0.6; // 60% of costs are GST-taxable inputs
+    const inputGST = (inputCostWithGST * gstRate) / 100; // ITC you can claim
+    const netGSTPerUnit = gstAmount - inputGST; // Net GST you pay to government per unit
+    
+    // Profit after GST impact (profit reduced by net GST cash outflow)
+    // The GST impact on profit comes from the timing/cash flow effect
+    const gstCashFlowCost = netGSTPerUnit * 0.1; // ~10% opportunity cost of GST cash tied up
+    const profitAfterGST = profitAmount - gstCashFlowCost;
+    
+    // Net profit after GST (annual)
+    const annualUnits = annualTurnover / basePrice;
+    const annualProfitBeforeGST = profitBeforeGST * annualUnits;
+    const annualProfitAfterGST = profitAfterGST * annualUnits;
+    
+    // Margin compression
+    const effectiveMarginBeforeGST = profitMargin;
+    const effectiveMarginAfterGST = (profitAfterGST / basePrice) * 100;
+    const marginCompression = effectiveMarginBeforeGST - effectiveMarginAfterGST;
+    
     return {
       isGSTMandatory,
       isGSTOptional,
@@ -63,6 +93,15 @@ const GSTSimulator = () => {
       netGSTPayable,
       cashFlowImpact,
       thresholdDistance: GST_REGISTRATION_THRESHOLD - annualTurnover,
+      // New profit metrics
+      profitBeforeGST,
+      profitAfterGST,
+      annualProfitBeforeGST,
+      annualProfitAfterGST,
+      effectiveMarginBeforeGST,
+      effectiveMarginAfterGST,
+      marginCompression,
+      netGSTPerUnit,
     };
   }, [annualTurnover, basePrice, gstRate, profitMargin]);
 
@@ -70,6 +109,11 @@ const GSTSimulator = () => {
     { name: "Base Price", value: basePrice, fill: "hsl(210, 100%, 55%)" },
     { name: "GST Amount", value: calculations.gstAmount, fill: "hsl(0, 72%, 55%)" },
     { name: "Final Price", value: calculations.finalPrice, fill: "hsl(142, 76%, 45%)" },
+  ];
+
+  const profitComparisonData = [
+    { name: "Profit Before GST", value: calculations.annualProfitBeforeGST, fill: "hsl(142, 76%, 45%)" },
+    { name: "Profit After GST", value: calculations.annualProfitAfterGST, fill: "hsl(210, 100%, 55%)" },
   ];
 
   const getApplicabilityStatus = () => {
@@ -205,13 +249,16 @@ const GSTSimulator = () => {
               max={50}
               step={1}
             />
+            <p className="text-xs text-muted-foreground mt-2 p-2 bg-muted/50 rounded-md border border-border">
+              <span className="text-secondary">Note:</span> Profit margin does not affect GST payable, but it determines how much GST reduces your actual business profit.
+            </p>
           </div>
         </div>
       </div>
 
       {/* Results */}
       <div className="space-y-6">
-        {/* Stats Grid */}
+        {/* Stats Grid - GST Metrics */}
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-card border border-border rounded-xl p-4">
             <p className="text-sm text-muted-foreground uppercase tracking-wider mb-1">Final Price</p>
@@ -234,6 +281,97 @@ const GSTSimulator = () => {
               {formatCurrency(calculations.cashFlowImpact)}
             </p>
             <p className="text-xs text-muted-foreground mt-1">Working capital</p>
+          </div>
+        </div>
+
+        {/* NEW: Profit Impact Section */}
+        <div className="bg-card border border-primary/30 rounded-xl p-5">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+            <h3 className="font-semibold text-primary">Profit Impact Analysis</h3>
+          </div>
+          <p className="text-xs text-muted-foreground mb-4">
+            See how your {profitMargin}% profit margin is affected by GST compliance costs and cash flow.
+          </p>
+          
+          {/* Profit Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
+            {/* Net Profit After GST */}
+            <div className="bg-muted/50 border border-border rounded-lg p-4">
+              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Net Profit After GST</p>
+              <p className={`font-mono text-xl font-bold ${calculations.annualProfitAfterGST >= calculations.annualProfitBeforeGST * 0.9 ? 'text-primary' : 'text-amber-500'}`}>
+                {formatCurrency(calculations.annualProfitAfterGST)}
+              </p>
+              <p className="text-xs text-muted-foreground mt-2">
+                Annual take-home profit after GST cash flow impact.
+              </p>
+            </div>
+            
+            {/* Profit Before vs After */}
+            <div className="bg-muted/50 border border-border rounded-lg p-4">
+              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Profit Retained</p>
+              <div className="flex items-baseline gap-2">
+                <p className={`font-mono text-xl font-bold ${
+                  (calculations.annualProfitAfterGST / calculations.annualProfitBeforeGST) >= 0.95 
+                    ? 'text-primary' 
+                    : (calculations.annualProfitAfterGST / calculations.annualProfitBeforeGST) >= 0.85 
+                      ? 'text-amber-500' 
+                      : 'text-destructive'
+                }`}>
+                  {((calculations.annualProfitAfterGST / calculations.annualProfitBeforeGST) * 100).toFixed(1)}%
+                </p>
+                <span className="text-xs text-muted-foreground">of original</span>
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">
+                {formatCurrency(calculations.annualProfitBeforeGST - calculations.annualProfitAfterGST)} lost to GST overhead.
+              </p>
+            </div>
+            
+            {/* Margin Compression */}
+            <div className="bg-muted/50 border border-border rounded-lg p-4">
+              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Margin Compression</p>
+              <div className="flex items-baseline gap-2">
+                <p className={`font-mono text-xl font-bold ${
+                  calculations.marginCompression <= 1 
+                    ? 'text-primary' 
+                    : calculations.marginCompression <= 3 
+                      ? 'text-amber-500' 
+                      : 'text-destructive'
+                }`}>
+                  -{calculations.marginCompression.toFixed(2)}%
+                </p>
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">
+                Effective margin: {calculations.effectiveMarginAfterGST.toFixed(1)}% vs {calculations.effectiveMarginBeforeGST}% before GST.
+              </p>
+            </div>
+          </div>
+          
+          {/* Profit Before vs After Bar Chart */}
+          <div className="h-32">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={profitComparisonData} layout="vertical">
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(220, 15%, 18%)" />
+                <XAxis type="number" tickFormatter={(v) => formatCurrency(v)} stroke="hsl(215, 15%, 55%)" fontSize={11} />
+                <YAxis type="category" dataKey="name" stroke="hsl(215, 15%, 55%)" fontSize={11} width={95} />
+                <Tooltip
+                  formatter={(value: number) => [formatCurrency(value), "Profit"]}
+                  contentStyle={{
+                    backgroundColor: "hsl(220, 15%, 8%)",
+                    border: "1px solid hsl(220, 15%, 18%)",
+                    borderRadius: "8px",
+                    color: "hsl(210, 20%, 95%)",
+                  }}
+                  labelStyle={{ color: "hsl(210, 20%, 95%)" }}
+                  itemStyle={{ color: "white" }}
+                />
+                <Bar dataKey="value" radius={[0, 4, 4, 0]}>
+                  {profitComparisonData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </div>
 
@@ -274,11 +412,17 @@ const GSTSimulator = () => {
             {calculations.isGSTMandatory ? (
               <>At your turnover of <span className="text-foreground font-medium">{formatCurrency(annualTurnover)}</span>, GST registration is mandatory. 
               You'll collect <span className="text-primary font-mono">{formatCurrency(calculations.annualGSTLiability)}</span> in GST annually, 
-              and after claiming input credits, pay approximately <span className="text-destructive font-mono">{formatCurrency(calculations.netGSTPayable)}</span> to the government.</>
+              and after claiming input credits, pay approximately <span className="text-destructive font-mono">{formatCurrency(calculations.netGSTPayable)}</span> to the government.
+              <br /><br />
+              <span className="text-secondary font-medium">Profit Impact:</span> With a {profitMargin}% margin, your effective margin drops to {calculations.effectiveMarginAfterGST.toFixed(1)}% after GST compliance costs, reducing annual profit by {formatCurrency(calculations.annualProfitBeforeGST - calculations.annualProfitAfterGST)}.
+              </>
             ) : (
               <>Your turnover is below the ₹40L threshold, so GST registration is optional. 
               However, registering voluntarily allows you to claim input tax credits on purchases, 
-              which could save money if your suppliers charge GST.</>
+              which could save money if your suppliers charge GST.
+              <br /><br />
+              <span className="text-secondary font-medium">Profit Impact:</span> Even without mandatory registration, understanding GST helps you price products correctly. Your {profitMargin}% margin would face slight compression under GST compliance.
+              </>
             )}
           </p>
         </div>
