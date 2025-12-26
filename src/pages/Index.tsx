@@ -111,97 +111,101 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="relative py-24 border-t border-border/50">
+      {/* What You Can Simulate */}
+      <section className="relative py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4 md:text-4xl">
-              Four Policy Simulators
+          <div className="mb-12">
+            <p className="text-primary text-sm font-medium mb-2">What you can simulate</p>
+            <h2 className="text-2xl font-bold md:text-3xl">
+              Four policies, one dashboard
             </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Each module shows you exactly which slabs and thresholds apply to your situation, 
-              with clear explanations of what it means.
-            </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature) => (
-              <div
+          <div className="space-y-4">
+            {features.map((feature, index) => (
+              <Link 
                 key={feature.title}
-                className="bg-card border border-border rounded-xl p-6 hover:border-primary/30 hover:-translate-y-1 transition-all duration-200"
+                to="/simulator"
+                className="group flex items-center gap-6 p-5 rounded-lg border border-border/50 bg-card/50 hover:bg-card hover:border-primary/30 transition-all duration-200"
               >
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <feature.icon className="h-6 w-6" />
+                <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                  <feature.icon className="h-5 w-5" />
                 </div>
-                <h3 className="mb-2 text-lg font-semibold">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="py-24 border-t border-border/50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4 md:text-4xl">How It Works</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Input your numbers, see which slabs apply, understand why
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-3 max-w-4xl mx-auto">
-            {[
-              { step: "01", title: "Enter Your Details", desc: "Income, turnover, or profit depending on the policy" },
-              { step: "02", title: "See Your Slab", desc: "Instantly see which bracket you fall into and what applies" },
-              { step: "03", title: "Understand the Impact", desc: "Clear explanations of tax payable, savings, and eligibility" },
-            ].map((item) => (
-              <div key={item.step} className="text-center">
-                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full border border-primary/30 font-mono text-xl font-bold text-primary">
-                  {item.step}
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-medium text-foreground group-hover:text-primary transition-colors">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-0.5">{feature.description}</p>
                 </div>
-                <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 border-t border-border/50">
-        <div className="container mx-auto px-4">
-          <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 md:p-12 text-center">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
-            <div className="relative">
-              <h2 className="text-2xl font-bold mb-4 md:text-3xl">
-                Ready to understand policy impact?
-              </h2>
-              <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-                No signup required. See exactly how tax policies affect your income, 
-                business, and financial decisions.
-              </p>
-              <Link to="/simulator">
-                <Button variant="hero" size="xl" className="group">
-                  Launch Simulator
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Button>
+                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How it works - Visual Steps */}
+      <section className="py-20 border-t border-border/50">
+        <div className="container mx-auto px-4">
+          <div className="mb-12">
+            <p className="text-primary text-sm font-medium mb-2">How it works</p>
+            <h2 className="text-2xl font-bold md:text-3xl">
+              Three steps to clarity
+            </h2>
+          </div>
+
+          <div className="relative max-w-3xl">
+            {/* Connecting line */}
+            <div className="absolute left-5 top-8 bottom-8 w-px bg-border hidden md:block" />
+            
+            <div className="space-y-8">
+              {[
+                { step: "1", title: "Input your numbers", desc: "Enter your income, business turnover, or startup profit" },
+                { step: "2", title: "See which slab applies", desc: "The simulator shows exactly which tax bracket you're in" },
+                { step: "3", title: "Understand the impact", desc: "Get clear numbers and plain-English explanations" },
+              ].map((item, index) => (
+                <div key={item.step} className="flex gap-6 items-start">
+                  <div className="relative z-10 flex-shrink-0 h-10 w-10 rounded-full bg-background border-2 border-primary flex items-center justify-center font-mono text-sm font-bold text-primary">
+                    {item.step}
+                  </div>
+                  <div className="pt-1.5">
+                    <h3 className="font-medium text-foreground">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
+      {/* Simple CTA */}
+      <section className="py-20 border-t border-border/50">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 max-w-3xl">
+            <div>
+              <h2 className="text-xl font-bold md:text-2xl mb-2">
+                Start simulating now
+              </h2>
+              <p className="text-muted-foreground text-sm">
+                No signup. No jargon. Just clarity.
+              </p>
+            </div>
+            <Link to="/simulator">
+              <Button variant="hero" size="lg" className="group whitespace-nowrap">
+                Open Simulator
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="border-t border-border/50 py-8">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p className="mb-2">
-            Policy Impact Simulator — Educational tool for understanding Indian tax policies
-          </p>
-          <p className="text-xs">
-            Results are illustrative and based on simplified models. 
-            Consult a tax professional for actual financial decisions.
+      <footer className="border-t border-border/50 py-6">
+        <div className="container mx-auto px-4">
+          <p className="text-xs text-muted-foreground">
+            Educational tool only. Results are illustrative. Consult a tax professional for actual decisions.
           </p>
         </div>
       </footer>
