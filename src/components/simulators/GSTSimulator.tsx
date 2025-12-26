@@ -247,7 +247,7 @@ const GSTSimulator = () => {
                 <XAxis type="number" tickFormatter={(v) => `₹${v / 1000}k`} stroke="hsl(215, 15%, 55%)" fontSize={12} />
                 <YAxis type="category" dataKey="name" stroke="hsl(215, 15%, 55%)" fontSize={12} width={85} />
                 <Tooltip
-                  formatter={(value: number) => formatCurrency(value)}
+                  formatter={(value: number) => [formatCurrency(value), "Value"]}
                   contentStyle={{
                     backgroundColor: "hsl(220, 15%, 8%)",
                     border: "1px solid hsl(220, 15%, 18%)",
@@ -255,8 +255,9 @@ const GSTSimulator = () => {
                     color: "hsl(210, 20%, 95%)",
                   }}
                   labelStyle={{ color: "hsl(210, 20%, 95%)" }}
+                  itemStyle={{ color: "white" }}
                 />
-                <Bar dataKey="value" radius={[0, 4, 4, 0]}>
+                <Bar dataKey="value" name="Value" radius={[0, 4, 4, 0]}>
                   {chartData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.fill} />
                   ))}
