@@ -408,16 +408,6 @@ const IncomeTaxSimulator = () => {
                     <Cell key={`cell-${index}`} fill={entry.fill} />
                   ))}
                 </Pie>
-                <Tooltip
-                  formatter={(value: number) => formatCurrency(value)}
-                  contentStyle={{
-                    backgroundColor: "hsl(220, 15%, 8%)",
-                    border: "1px solid hsl(220, 15%, 18%)",
-                    borderRadius: "8px",
-                    color: "hsl(210, 20%, 95%)",
-                  }}
-                  labelStyle={{ color: "hsl(210, 20%, 95%)" }}
-                />
               </PieChart>
             </ResponsiveContainer>
           </div>
