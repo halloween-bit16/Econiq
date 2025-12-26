@@ -25,7 +25,7 @@ const Simulator = () => {
               </Button>
             </Link>
             <div className="h-5 w-px bg-border" />
-            <h1 className="font-semibold">Policy Impact Simulator</h1>
+            <h1 className="font-semibold">Econiq</h1>
           </div>
           <Button
             variant="outline"
