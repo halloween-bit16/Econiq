@@ -350,6 +350,7 @@ const CompositionSchemeSimulator = () => {
                     color: "hsl(210, 20%, 95%)",
                   }}
                   labelStyle={{ color: "hsl(210, 20%, 95%)" }}
+                  itemStyle={{ color: "white" }}
                 />
                 <Bar dataKey="tax" name="Tax" radius={[4, 4, 0, 0]}>
                   {comparisonData.map((entry, index) => (
