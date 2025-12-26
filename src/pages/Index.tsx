@@ -111,89 +111,62 @@ const Index = () => {
         </div>
       </section>
 
-      {/* What You Can Simulate */}
-      <section className="relative py-20">
+      {/* Simulators Grid */}
+      <section className="py-24 bg-card/30">
         <div className="container mx-auto px-4">
-          <div className="mb-12">
-            <p className="text-primary text-sm font-medium mb-2">What you can simulate</p>
-            <h2 className="text-2xl font-bold md:text-3xl">
-              Four policies, one dashboard
-            </h2>
-          </div>
+          <h2 className="text-lg font-medium text-muted-foreground mb-10">
+            What's inside
+          </h2>
 
-          <div className="space-y-4">
-            {features.map((feature, index) => (
-              <Link 
-                key={feature.title}
-                to="/simulator"
-                className="group flex items-center gap-6 p-5 rounded-lg border border-border/50 bg-card/50 hover:bg-card hover:border-primary/30 transition-all duration-200"
-              >
-                <div className="flex-shrink-0 h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                  <feature.icon className="h-5 w-5" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-medium text-foreground group-hover:text-primary transition-colors">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mt-0.5">{feature.description}</p>
-                </div>
-                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
-              </Link>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
+            <Link to="/simulator" className="group p-6 border border-border rounded-lg hover:border-primary/40 transition-colors">
+              <Calculator className="h-5 w-5 text-primary mb-3" />
+              <h3 className="font-medium mb-1">GST Calculator</h3>
+              <p className="text-sm text-muted-foreground">Check if GST applies based on your turnover</p>
+            </Link>
+
+            <Link to="/simulator" className="group p-6 border border-border rounded-lg hover:border-primary/40 transition-colors">
+              <Building2 className="h-5 w-5 text-primary mb-3" />
+              <h3 className="font-medium mb-1">Composition Scheme</h3>
+              <p className="text-sm text-muted-foreground">Compare regular GST vs composition</p>
+            </Link>
+
+            <Link to="/simulator" className="group p-6 border border-border rounded-lg hover:border-primary/40 transition-colors">
+              <TrendingUp className="h-5 w-5 text-primary mb-3" />
+              <h3 className="font-medium mb-1">Income Tax</h3>
+              <p className="text-sm text-muted-foreground">Old regime vs new regime comparison</p>
+            </Link>
+
+            <Link to="/simulator" className="group p-6 border border-border rounded-lg hover:border-primary/40 transition-colors">
+              <Briefcase className="h-5 w-5 text-primary mb-3" />
+              <h3 className="font-medium mb-1">Startup Benefits</h3>
+              <p className="text-sm text-muted-foreground">Section 80-IAC tax holiday eligibility</p>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* How it works - Visual Steps */}
-      <section className="py-20 border-t border-border/50">
-        <div className="container mx-auto px-4">
-          <div className="mb-12">
-            <p className="text-primary text-sm font-medium mb-2">How it works</p>
-            <h2 className="text-2xl font-bold md:text-3xl">
-              Three steps to clarity
-            </h2>
+      {/* Simple explainer */}
+      <section className="py-24">
+        <div className="container mx-auto px-4 max-w-2xl">
+          <h2 className="text-lg font-medium text-muted-foreground mb-8">How it works</h2>
+          
+          <div className="space-y-6 text-foreground">
+            <p>
+              <span className="text-primary font-medium">1.</span> Enter your income or turnover
+            </p>
+            <p>
+              <span className="text-primary font-medium">2.</span> See which tax slab applies to you
+            </p>
+            <p>
+              <span className="text-primary font-medium">3.</span> Understand the impact in plain numbers
+            </p>
           </div>
 
-          <div className="relative max-w-3xl">
-            {/* Connecting line */}
-            <div className="absolute left-5 top-8 bottom-8 w-px bg-border hidden md:block" />
-            
-            <div className="space-y-8">
-              {[
-                { step: "1", title: "Input your numbers", desc: "Enter your income, business turnover, or startup profit" },
-                { step: "2", title: "See which slab applies", desc: "The simulator shows exactly which tax bracket you're in" },
-                { step: "3", title: "Understand the impact", desc: "Get clear numbers and plain-English explanations" },
-              ].map((item, index) => (
-                <div key={item.step} className="flex gap-6 items-start">
-                  <div className="relative z-10 flex-shrink-0 h-10 w-10 rounded-full bg-background border-2 border-primary flex items-center justify-center font-mono text-sm font-bold text-primary">
-                    {item.step}
-                  </div>
-                  <div className="pt-1.5">
-                    <h3 className="font-medium text-foreground">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Simple CTA */}
-      <section className="py-20 border-t border-border/50">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 max-w-3xl">
-            <div>
-              <h2 className="text-xl font-bold md:text-2xl mb-2">
-                Start simulating now
-              </h2>
-              <p className="text-muted-foreground text-sm">
-                No signup. No jargon. Just clarity.
-              </p>
-            </div>
+          <div className="mt-12 pt-8 border-t border-border">
             <Link to="/simulator">
-              <Button variant="hero" size="lg" className="group whitespace-nowrap">
-                Open Simulator
+              <Button variant="hero" size="lg" className="group">
+                Try the simulator
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
@@ -202,10 +175,10 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border/50 py-6">
+      <footer className="border-t border-border py-8">
         <div className="container mx-auto px-4">
-          <p className="text-xs text-muted-foreground">
-            Educational tool only. Results are illustrative. Consult a tax professional for actual decisions.
+          <p className="text-sm text-muted-foreground">
+            For educational purposes only. Not legal or financial advice.
           </p>
         </div>
       </footer>
