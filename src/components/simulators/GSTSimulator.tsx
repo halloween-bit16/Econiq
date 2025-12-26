@@ -364,6 +364,7 @@ const GSTSimulator = () => {
                   }}
                   labelStyle={{ color: "hsl(210, 20%, 95%)" }}
                   itemStyle={{ color: "white" }}
+                  cursor={{ fill: "transparent" }}
                 />
                 <Bar dataKey="value" radius={[0, 4, 4, 0]}>
                   {profitComparisonData.map((entry, index) => (
@@ -394,6 +395,7 @@ const GSTSimulator = () => {
                   }}
                   labelStyle={{ color: "hsl(210, 20%, 95%)" }}
                   itemStyle={{ color: "white" }}
+                  cursor={{ fill: "transparent" }}
                 />
                 <Bar dataKey="value" name="Value" radius={[0, 4, 4, 0]}>
                   {chartData.map((entry, index) => (
