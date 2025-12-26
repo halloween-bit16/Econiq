@@ -341,7 +341,9 @@ const IncomeTaxSimulator = () => {
                     backgroundColor: "hsl(220, 15%, 8%)",
                     border: "1px solid hsl(220, 15%, 18%)",
                     borderRadius: "8px",
+                    color: "hsl(210, 20%, 95%)",
                   }}
+                  labelStyle={{ color: "hsl(210, 20%, 95%)" }}
                 />
                 <Bar dataKey="tax" name="Tax" radius={[4, 4, 0, 0]}>
                   {comparisonData.map((entry, index) => (
@@ -411,7 +413,9 @@ const IncomeTaxSimulator = () => {
                     backgroundColor: "hsl(220, 15%, 8%)",
                     border: "1px solid hsl(220, 15%, 18%)",
                     borderRadius: "8px",
+                    color: "hsl(210, 20%, 95%)",
                   }}
+                  labelStyle={{ color: "hsl(210, 20%, 95%)" }}
                 />
               </PieChart>
             </ResponsiveContainer>
