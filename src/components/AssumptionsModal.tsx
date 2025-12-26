@@ -43,38 +43,38 @@ const AssumptionsModal = ({ isOpen, onClose }: AssumptionsModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-lg bg-card border-border">
+      <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-card border-border">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <Info className="h-5 w-5 text-secondary" />
+          <DialogTitle className="flex items-center gap-2 text-lg">
+            <Info className="h-5 w-5 text-primary" />
             Assumptions & Disclaimers
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-sm">
             Important information about the calculations in this simulator.
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-4 mt-4">
+        <div className="space-y-4 mt-6">
           {assumptions.map((item, index) => (
             <div
               key={index}
-              className="p-4 rounded-lg bg-muted/50 border border-border"
+              className="p-5 rounded-lg bg-muted/30 border border-border"
             >
-              <h4 className="font-medium text-sm mb-1">{item.title}</h4>
-              <p className="text-xs text-muted-foreground leading-relaxed">
+              <h4 className="font-semibold text-base text-foreground mb-2">{item.title}</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {item.description}
               </p>
             </div>
           ))}
 
-          <div className="p-4 rounded-lg bg-destructive/5 border border-destructive/20">
-            <div className="flex items-start gap-2">
-              <AlertTriangle className="h-4 w-4 text-destructive mt-0.5 shrink-0" />
+          <div className="p-5 rounded-lg bg-destructive/10 border border-destructive/30">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="h-5 w-5 text-destructive mt-0.5 shrink-0" />
               <div>
-                <h4 className="font-medium text-sm text-destructive mb-1">
+                <h4 className="font-semibold text-base text-destructive mb-2">
                   Not Financial Advice
                 </h4>
-                <p className="text-xs text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   This tool is for educational purposes only. Do not make
                   financial decisions based solely on these simulations. Always
                   consult a qualified Chartered Accountant or tax professional.
