@@ -138,6 +138,22 @@
     scrollbar-width: thin;
     scrollbar-color: hsl(var(--muted)) transparent;
   }
+
+  /* Recharts tooltip readability (all charts) */
+  .recharts-default-tooltip {
+    background: hsl(var(--card)) !important;
+    border: 1px solid hsl(var(--border)) !important;
+    border-radius: calc(var(--radius) * 0.9) !important;
+    color: hsl(var(--foreground)) !important;
+    box-shadow: 0 16px 40px hsl(var(--background) / 0.6) !important;
+  }
+
+  .recharts-tooltip-label,
+  .recharts-tooltip-item,
+  .recharts-tooltip-item-name,
+  .recharts-tooltip-item-value {
+    color: hsl(var(--foreground)) !important;
+  }
 }
 
 @layer utilities {
