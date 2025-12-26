@@ -8,6 +8,7 @@ import CompositionSchemeSimulator from "@/components/simulators/CompositionSchem
 import IncomeTaxSimulator from "@/components/simulators/IncomeTaxSimulator";
 import StartupIndiaSimulator from "@/components/simulators/StartupIndiaSimulator";
 import AssumptionsModal from "@/components/AssumptionsModal";
+import logo from "@/assets/logo.png";
 
 const Simulator = () => {
   const [showAssumptions, setShowAssumptions] = useState(false);
@@ -25,6 +26,7 @@ const Simulator = () => {
               </Button>
             </Link>
             <div className="h-5 w-px bg-border" />
+            <img src={logo} alt="Econiq logo" className="h-6 w-6" />
             <h1 className="font-semibold">Econiq</h1>
           </div>
           <Button
