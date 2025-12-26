@@ -34,11 +34,6 @@ const AssumptionsModal = ({ isOpen, onClose }: AssumptionsModalProps) => {
       description:
         "Section 80-IAC benefits require DPIIT recognition and meeting specific criteria. Consult a CA for eligibility assessment.",
     },
-    {
-      title: "Illustrative Results",
-      description:
-        "All results are for educational purposes only. They are not predictions or financial advice. Always consult a qualified tax professional for actual tax planning.",
-    },
   ];
 
   return (
