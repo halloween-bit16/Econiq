@@ -42,10 +42,8 @@ const Index = () => {
             <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-secondary" />
             <span className="font-semibold text-lg">Policy Impact Simulator</span>
           </div>
-          <Link to="/simulator">
-            <Button variant="outline" size="sm">
-              Launch Simulator
-            </Button>
+          <Link to="/simulator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            Launch Simulator
           </Link>
         </div>
       </nav>
@@ -208,17 +206,11 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-border">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <div className="h-6 w-6 rounded bg-gradient-to-br from-primary to-secondary" />
-              <span className="font-medium text-sm">Policy Impact Simulator</span>
-            </div>
-            <p className="text-xs text-muted-foreground">
-              Educational tool only · Not legal or financial advice
-            </p>
-          </div>
+      <footer className="py-8 border-t border-border">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-sm text-muted-foreground">
+            Made by Team Biryani. For educational purposes only.
+          </p>
         </div>
       </footer>
     </div>
