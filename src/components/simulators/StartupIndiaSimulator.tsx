@@ -331,6 +331,8 @@ const StartupIndiaSimulator = () => {
                 color: "hsl(210, 20%, 95%)"
               }} labelStyle={{
                 color: "hsl(210, 20%, 95%)"
+              }} itemStyle={{
+                color: "white"
               }} />
                 <Bar dataKey="profit" name="Net Profit" radius={[4, 4, 0, 0]}>
                   {comparisonData.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} />)}
@@ -356,6 +358,8 @@ const StartupIndiaSimulator = () => {
                 color: "hsl(210, 20%, 95%)"
               }} labelStyle={{
                 color: "hsl(210, 20%, 95%)"
+              }} itemStyle={{
+                color: "white"
               }} />
                 <Line type="monotone" dataKey="withoutExemption" name="Without 80-IAC" stroke="hsl(220, 15%, 45%)" strokeWidth={2} dot={false} />
                 <Line type="monotone" dataKey="withExemption" name="With 80-IAC" stroke="hsl(142, 76%, 45%)" strokeWidth={2} dot={false} />
