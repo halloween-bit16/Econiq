@@ -357,38 +357,6 @@ const IncomeTaxSimulator = () => {
           </div>
         </div>
 
-        {/* Slab Breakdown */}
-        <div className="bg-card border border-border rounded-xl p-6">
-          <h3 className="font-semibold mb-4">Tax Slab Breakdown</h3>
-          <div className="space-y-2">
-            {calculations.currentBreakdown.length > 0 ? (
-              calculations.currentBreakdown.map((item, index) => (
-                <div key={index} className="flex items-center justify-between py-2 border-b border-border last:border-0">
-                  <div>
-                    <span className="text-sm font-medium">{item.slab}</span>
-                    <span className={`ml-2 text-xs px-1.5 py-0.5 rounded ${
-                      item.rate === 0 ? 'bg-primary/20 text-primary' :
-                      item.rate <= 10 ? 'bg-secondary/20 text-secondary' :
-                      item.rate <= 20 ? 'bg-yellow-500/20 text-yellow-500' :
-                      'bg-destructive/20 text-destructive'
-                    }`}>
-                      {item.rate}%
-                    </span>
-                  </div>
-                  <div className="text-right">
-                    <span className="font-mono text-sm">{formatCurrency(item.tax)}</span>
-                    <span className="text-xs text-muted-foreground ml-2">on {formatCurrency(item.taxable)}</span>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p className="text-sm text-muted-foreground py-4 text-center">
-                No tax applicable - eligible for full rebate under Section 87A
-              </p>
-            )}
-          </div>
-        </div>
-
         {/* Income Split Pie */}
         <div className="bg-card border border-border rounded-xl p-6">
           <h3 className="font-semibold mb-4">Income Split</h3>
