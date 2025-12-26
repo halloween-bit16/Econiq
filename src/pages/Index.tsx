@@ -1,6 +1,7 @@
 import { ArrowRight, TrendingUp, Calculator, Building2, Briefcase } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.png";
 
 const Index = () => {
   const features = [
@@ -39,7 +40,7 @@ const Index = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/90 backdrop-blur-md">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-secondary" />
+            <img src={logo} alt="Econiq logo" className="h-8 w-8" />
             <span className="font-semibold text-lg">Econiq</span>
           </div>
           <Link to="/simulator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
