@@ -40,7 +40,7 @@ const Index = () => {
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-secondary" />
-            <span className="font-semibold text-lg">Policy Impact Simulator</span>
+            <span className="font-semibold text-lg">Econiq</span>
           </div>
           <Link to="/simulator" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Launch Simulator
