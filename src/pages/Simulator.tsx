@@ -14,6 +14,7 @@ const Simulator = () => {
   const [showAssumptions, setShowAssumptions] = useState(false);
 
   return (
+    <>
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border/50 bg-background/90 backdrop-blur-md">
@@ -94,6 +95,15 @@ const Simulator = () => {
         onClose={() => setShowAssumptions(false)}
       />
     </div>
+
+    <footer className="py-8 border-t border-border">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-sm text-muted-foreground">
+            Made by Team Biryani. For educational purposes only. <a className="underline" href="https://github.com/halloween-bit16/Econiq.git">Click here for github repository.</a>
+          </p>
+        </div>
+      </footer>
+      </>
   );
 };
 

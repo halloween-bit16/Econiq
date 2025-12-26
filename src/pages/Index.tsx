@@ -210,7 +210,7 @@ const Index = () => {
       <footer className="py-8 border-t border-border">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm text-muted-foreground">
-            Made by Team Biryani. For educational purposes only.
+            Made by Team Biryani. For educational purposes only. <a className="underline" href="https://github.com/halloween-bit16/Econiq.git">Click here for github repository.</a>
           </p>
         </div>
       </footer>

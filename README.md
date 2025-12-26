@@ -97,8 +97,8 @@ npm install
 ## ▶️ Run Locally
 npm run dev
 
-## Open your browser at:
-http://localhost:3000
+## Open at:
+https://econiq.netlify.app/
 
 ## ⚠️ Assumptions & Disclaimer
 
