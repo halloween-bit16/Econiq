@@ -252,7 +252,9 @@ const GSTSimulator = () => {
                     backgroundColor: "hsl(220, 15%, 8%)",
                     border: "1px solid hsl(220, 15%, 18%)",
                     borderRadius: "8px",
+                    color: "hsl(210, 20%, 95%)",
                   }}
+                  labelStyle={{ color: "hsl(210, 20%, 95%)" }}
                 />
                 <Bar dataKey="value" radius={[0, 4, 4, 0]}>
                   {chartData.map((entry, index) => (
